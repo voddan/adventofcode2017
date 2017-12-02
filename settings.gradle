@@ -1,0 +1,3 @@
+rootProject.name = 'adventofcode2017'
+rootProject.buildFileName = 'build.gradle.kts'
+
