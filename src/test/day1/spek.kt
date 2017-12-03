@@ -49,8 +49,8 @@ class Test : Spek({
 
             it("produces $result") {}
 
-            xit("should produce ???") {
-                assertEquals(TODO(), result)
+            it("should produce 1216") {
+                assertEquals(1216, result)
             }
         }
     }
