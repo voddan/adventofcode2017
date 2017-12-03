@@ -1,8 +1,11 @@
 package day2
 
 fun taskA(input: String): Int {
-    println(input)
-    return 0
+    val table: List<List<Int>> = input.split("\n").map {
+        it.split(Regex("\\s")).map { it.toInt() }
+    }
+
+    return table.sumBy { row -> row.max()!! - row.min()!! }
 }
 
 fun main(args: Array<String>) {

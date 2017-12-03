@@ -44,8 +44,8 @@ class Test : Spek({
 
             it("produces $result") {}
 
-            val expect = -1
-            xit("should produce $expect") {
+            val expect = 32121
+            it("should produce $expect") {
                 assertEquals(expect , result)
             }
         }
