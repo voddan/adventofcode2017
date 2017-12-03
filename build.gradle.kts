@@ -2,7 +2,7 @@ import org.gradle.script.lang.kotlin.extra
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "com.epam.voddan"
-version = "1st-day"
+version = "2nd-day"
 
 
 buildscript {
