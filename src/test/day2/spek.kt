@@ -51,4 +51,31 @@ class Test : Spek({
         }
     }
 
+    given("2st task") {
+        on("a simple 3-row input") {
+            val input = """
+                5 9 2 8
+                9 4 7 3
+                3 8 6 5""".trimIndent()
+
+            val result = taskB(input)
+
+            val expect = 9
+            it("should produce $expect") {
+                assertEquals(expect, result)
+            }
+        }
+
+        on("the puzzler's input") {
+            val result = taskB(puzzlerInput)
+
+            it("produces $result") {}
+
+            val expect = -1
+            xit("should produce $expect") {
+                assertEquals(expect , result)
+            }
+        }
+    }
+
 })
