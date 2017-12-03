@@ -5,6 +5,6 @@ fun taskA(input: String): Int {
 }
 
 fun main(args: Array<String>) {
-    taskA("")
+    taskA("1122")
 }
 
