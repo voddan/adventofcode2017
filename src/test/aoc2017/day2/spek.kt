@@ -1,4 +1,4 @@
-package day2
+package aoc2017.day2
 
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.*

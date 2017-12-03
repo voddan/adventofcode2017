@@ -1,4 +1,4 @@
-package day1
+package aoc2017.day1
 
 fun taskA(input: String): Int {
     val digits = input.map { (it - '0').toInt() }

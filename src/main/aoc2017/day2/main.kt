@@ -1,4 +1,4 @@
-package day2
+package aoc2017.day2
 
 import com.marcinmoskala.math.combinations
 
@@ -22,10 +22,4 @@ fun taskB(input: String): Int {
     }
 
     return sum
-}
-
-fun main(args: Array<String>) {
-    taskB("5 9 2 8\n" +
-            "9 4 7 3\n" +
-            "3 8 6 5")
 }
