@@ -111,8 +111,9 @@ class Test : Spek({
 
             it("produces $result") {}
 
-            xit("should produce ???") {
-                assertEquals(TODO(), result)
+            val expect = 1072
+            it("should produce $expect") {
+                assertEquals(expect , result)
             }
         }
     }
