@@ -32,6 +32,7 @@ repositories {
 
 dependencies {
     compile(kotlinModule("stdlib-jdk8", kotlin_version))
+    compile("com.marcinmoskala:DiscreteMathToolkit:1.0.3")
 
     testCompile(kotlinModule("test", kotlin_version))
     testCompile(kotlinModule("reflect", kotlin_version))  // to run separate tests
