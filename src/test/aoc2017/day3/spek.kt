@@ -57,6 +57,39 @@ class Test : Spek({
         }
     }
 
+    given("2 task") {
+        on("requesting squares in order") {
+            val expect = listOf(1, 1, 2, 4, 5, 10, 11, 23, 25, 26, 54, 57, 59, 122, 133, 142, 147, 304, 330, 351, 362, 747, 806)
+            val result = squaresInOrder().take(expect.size).toList()
+
+            for(i in expect.indices) {
+                it("correctly calculates the $i'th square") {
+                    assertEquals(expect[i], result[i])
+                }
+            }
+        }
+
+        on("calculating the first value that is larger than your puzzle input") {
+            it("returns 59 for 57") {
+                assertEquals(59, taskB(57))
+            }
+
+            it("returns 142 for 134") {
+                assertEquals(142, taskB(134))
+            }
+        }
+
+        on("the puzzler's input") {
+            val result = taskB(puzzlerInput)
+
+            it("produces $result") {}
+
+            val expect = -1
+            it("should produce $expect") {
+                assertEquals(expect , result)
+            }
+        }
+    }
 })
 
 fun TestContainer.checkTask(input: Int, expect: Int, action: (Int) -> Int) {

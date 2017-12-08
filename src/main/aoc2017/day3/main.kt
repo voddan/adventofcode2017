@@ -16,6 +16,14 @@ fun taskA(input: Int): Int {
     return longitude + latitude
 }
 
+fun taskB(input: Int): Int {
+    return 0;
+}
+
+fun squaresInOrder(): Sequence<Int> {
+    return sequenceOf(1)
+}
+
 fun main(args: Array<String>) {
     println(taskA(2))
 }
