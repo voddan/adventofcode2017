@@ -56,5 +56,22 @@ fun taskA(input: List<String>): String {
     return root.name
 }
 
+
+sealed class BalanceResult {
+    data class AllGood(val weight: Int) : BalanceResult()
+    data class NeedUpdate(val node: Node, val correctWeight: Int) : BalanceResult()
+}
+
+fun balanceGraph(node: Node): BalanceResult {
+    return BalanceResult.AllGood(0)
+}
+
+fun taskB(input: List<String>): Int {
+    val nodes = input.map { parseNode(it) }
+    val root = buildGraph(nodes)
+    val res = balanceGraph(root)
+    return (res as BalanceResult.NeedUpdate).correctWeight
+}
+
 fun main(args: Array<String>) {
 }
