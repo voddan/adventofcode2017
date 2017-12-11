@@ -50,6 +50,14 @@ fun taskA(input: List<String>): Int {
     return registers.values.max() ?: throw RuntimeException("no registers found :(")
 }
 
+fun taskB(input: List<String>): Int {
+    val instructions = input.map { Instruction.parse(it) }
+    val registers = mutableMapOf<String, Int>()
+    instructions.forEach { it.run(registers) }
+
+    return registers.values.max() ?: throw RuntimeException("no registers found :(")
+}
+
 
 fun main(args: Array<String>) {
 }

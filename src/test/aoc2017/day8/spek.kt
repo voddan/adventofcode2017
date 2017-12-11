@@ -1071,4 +1071,28 @@ class Test : Spek({
             }
         }
     }
+
+    given("2st task") {
+        on("a small example") {
+            val input = listOf("b inc 5 if a > 1",
+                                "a inc 1 if b < 5",
+                                "c dec -10 if a >= 1",
+                                "c inc -20 if c == 10")
+
+            it("should return 10") {
+                assertEquals(10, taskB(input))
+            }
+        }
+
+        on("the puzzler's input $puzzlerInput") {
+            val result = taskB(puzzlerInput)
+
+            it("produces $result") {}
+
+            val expect = -1
+            it("should produce $expect") {
+                assertEquals(expect, result)
+            }
+        }
+    }
 })
