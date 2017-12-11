@@ -36,7 +36,7 @@ class Test : Spek({
             }
         }
 
-        on("the puzzler's input of ${puzzlerInput.size} instructions") {
+        on("the puzzler's input $puzzlerInput") {
             val result = taskA(puzzlerInput)
 
             it("produces $result") {}
@@ -53,12 +53,12 @@ class Test : Spek({
             assertEquals(4, taskB(listOf(0, 2, 7, 0)))
         }
 
-        on("the puzzler's input of ${puzzlerInput.size} instructions") {
+        on("the puzzler's input $puzzlerInput") {
             val result = taskB(puzzlerInput)
 
             it("produces $result") {}
 
-            val expect = -1
+            val expect = 1037
             it("should produce $expect") {
                 assertEquals(expect, result)
             }

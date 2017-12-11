@@ -29,7 +29,7 @@ fun taskA(input: List<Int>): Int {
 }
 
 fun taskB(input: List<Int>): Int {
-    val history = mutableSetOf<List<Int>>()
+    val history = mutableListOf<List<Int>>()
 
     var banks = input.toList()
     do {
@@ -37,7 +37,7 @@ fun taskB(input: List<Int>): Int {
         banks = redistribute(banks)
     } while(banks !in history)
 
-    return history.size
+    return history.size - history.indexOf(banks)
 }
 
 
