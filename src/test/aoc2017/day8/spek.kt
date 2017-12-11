@@ -1052,7 +1052,7 @@ class Test : Spek({
 
 
             it("thinks that the root is `tknk`") {
-                assertEquals(mapOf("b" to 0, "a" to 1, "c" to -10), registers)
+                assertEquals(mapOf("a" to 1, "c" to -10), registers)
             }
 
             it("should return 1") {
@@ -1065,7 +1065,7 @@ class Test : Spek({
 
             it("produces $result") {}
 
-            val expect = -1
+            val expect = 6012
             it("should produce $expect") {
                 assertEquals(expect, result)
             }
