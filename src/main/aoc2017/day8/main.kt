@@ -1,5 +1,7 @@
 package aoc2017.day8
 
+import kotlin.math.max
+
 
 enum class ComparisonOperator(val repr: String, val cmp: (reg: Int, num: Int) -> Boolean) {
     EQ("==", { reg, num -> reg == num}),
@@ -53,11 +55,12 @@ fun taskA(input: List<String>): Int {
 fun taskB(input: List<String>): Int {
     val instructions = input.map { Instruction.parse(it) }
     val registers = mutableMapOf<String, Int>()
-    instructions.forEach { it.run(registers) }
 
-    return registers.values.max() ?: throw RuntimeException("no registers found :(")
-}
+    var maxValue = Int.MIN_VALUE
+    instructions.forEach {
+        it.run(registers)
+        maxValue = max(maxValue, registers.values.max() ?: Int.MIN_VALUE)
+    }
 
-
-fun main(args: Array<String>) {
+    return maxValue
 }
