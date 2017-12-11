@@ -1196,7 +1196,7 @@ class Test : Spek({
             val root = buildGraph(nodes)
 
             it("needs to update `ugml`") {
-                assertEquals("ugml", (balanceGraph(root) as BalanceResult.NeedUpdate).node.name )
+                assertEquals("ugml", (balanceGraph(root) as NeedUpdate).node.name )
             }
 
             it("should return 60") {
@@ -1209,7 +1209,7 @@ class Test : Spek({
 
             it("produces $result") {}
 
-            val expect = -1
+            val expect = 1275
             it("should produce $expect") {
                 assertEquals(expect, result)
             }

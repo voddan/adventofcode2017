@@ -57,20 +57,40 @@ fun taskA(input: List<String>): String {
 }
 
 
-sealed class BalanceResult {
-    data class AllGood(val weight: Int) : BalanceResult()
-    data class NeedUpdate(val node: Node, val correctWeight: Int) : BalanceResult()
-}
+sealed class BalanceResult
+data class AllGood(val weight: Int) : BalanceResult()
+data class NeedUpdate(val node: Node, val correctWeight: Int) : BalanceResult()
 
 fun balanceGraph(node: Node): BalanceResult {
-    return BalanceResult.AllGood(0)
+    if(node.children.isEmpty()) return AllGood(node.weight)
+
+    val children = node.children.toList()
+
+    val results = children.map { balanceGraph(it) }
+
+    val problem = results.filterIsInstance<NeedUpdate>().firstOrNull()
+
+    if(problem != null) return problem
+
+    val weights = results.map { (it as AllGood).weight }
+
+    val counts = weights.groupingBy { it }.eachCount()
+
+    if(counts.size == 1) return AllGood(weights.sum() + node.weight)
+
+    val normalWeight = counts.maxBy { it.value }!!.key
+    val problemWeight = counts.minBy { it.value }!!.key
+    val problemIndex = weights.indexOf(problemWeight)
+    val problemChild = children[problemIndex]
+
+    return NeedUpdate(problemChild, problemChild.weight - problemWeight + normalWeight)
 }
 
 fun taskB(input: List<String>): Int {
     val nodes = input.map { parseNode(it) }
     val root = buildGraph(nodes)
     val res = balanceGraph(root)
-    return (res as BalanceResult.NeedUpdate).correctWeight
+    return (res as NeedUpdate).correctWeight
 }
 
 fun main(args: Array<String>) {
