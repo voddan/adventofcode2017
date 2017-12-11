@@ -47,4 +47,21 @@ class Test : Spek({
             }
         }
     }
+
+    given("2st task") {
+        it("the redistribution loop for `0, 2, 7, 0` has 4 steps") {
+            assertEquals(4, taskB(listOf(0, 2, 7, 0)))
+        }
+
+        on("the puzzler's input of ${puzzlerInput.size} instructions") {
+            val result = taskB(puzzlerInput)
+
+            it("produces $result") {}
+
+            val expect = -1
+            it("should produce $expect") {
+                assertEquals(expect, result)
+            }
+        }
+    }
 })

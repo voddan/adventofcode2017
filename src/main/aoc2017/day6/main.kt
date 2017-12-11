@@ -28,6 +28,18 @@ fun taskA(input: List<Int>): Int {
     return history.size
 }
 
+fun taskB(input: List<Int>): Int {
+    val history = mutableSetOf<List<Int>>()
+
+    var banks = input.toList()
+    do {
+        history += banks
+        banks = redistribute(banks)
+    } while(banks !in history)
+
+    return history.size
+}
+
 
 fun main(args: Array<String>) {
     taskA(listOf(0, 2, 7, 0))
