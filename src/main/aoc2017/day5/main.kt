@@ -2,7 +2,20 @@ package aoc2017.day5
 
 
 fun taskA(input: List<Int>): Int {
-    return 0
+    val arr = ArrayList(input)
+
+    var pos = 0
+    var count = 0
+
+    while(pos in arr.indices) {
+        count++
+
+        val next = arr[pos]
+        arr[pos] += 1
+        pos += next
+    }
+
+    return count
 }
 
 

@@ -12,12 +12,20 @@ class Test : Spek({
             assertEquals(5, taskA(listOf(0, 3, 0, 1, -3)))
         }
 
+        it("escapes from `1, 1, 1, 1, 1` in 5 steps") {
+            assertEquals(5, taskA(listOf(1, 1, 1, 1, 1)))
+        }
+
+        it("escapes from `0, -1` in 4 steps") {
+            assertEquals(4, taskA(listOf(0, -1)))
+        }
+
         on("the puzzler's input of ${puzzlerInput.size} instructions") {
             val result = taskA(puzzlerInput)
 
             it("produces $result") {}
 
-            val expect = -1
+            val expect = 326618
             it("should produce $expect") {
                 assertEquals(expect, result)
             }
