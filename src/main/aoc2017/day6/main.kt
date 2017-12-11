@@ -2,11 +2,30 @@ package aoc2017.day6
 
 
 fun redistribute(banks: List<Int>): List<Int> {
-    return banks.toList()
+    val maxId = banks.indexOf(banks.max())
+    val arr = banks.toMutableList()
+    val size = arr.size
+
+    val blocks = arr[maxId]
+    arr[maxId] = 0
+
+    repeat(blocks) { i ->
+        arr[(i + maxId + 1) % size] += 1
+    }
+
+    return arr
 }
 
 fun taskA(input: List<Int>): Int {
-    return 0
+    val history = mutableSetOf<List<Int>>()
+
+    var banks = input.toList()
+    do {
+        history += banks
+        banks = redistribute(banks)
+    } while(banks !in history)
+
+    return history.size
 }
 
 
