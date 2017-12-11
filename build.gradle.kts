@@ -1,5 +1,7 @@
 import org.gradle.script.lang.kotlin.extra
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.Coroutines
+import org.jetbrains.kotlin.js.translate.context.Namer.kotlin
 
 group = "com.epam.voddan"
 version = "3rd-day"
