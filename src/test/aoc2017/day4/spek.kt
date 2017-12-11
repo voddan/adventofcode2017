@@ -557,4 +557,51 @@ class Test : Spek({
             }
         }
     }
+
+    given("2st task") {
+        val s1 = "abcde fghij"
+        val s2 = "abcde xyz ecdab"
+        val s3 = "a ab abc abd abf abj"
+        val s4 = "iiii oiii ooii oooi oooo"
+        val s5 = "oiii ioii iioi iiio"
+
+        on("validating a single input") {
+            it("confirms `$s1` is valid") {
+                assertTrue(isValidAnagr(s1))
+            }
+
+            it("confirms `$s2` is not valid") {
+                assertFalse(isValidAnagr(s2))
+            }
+
+            it("confirms `$s3` is valid") {
+                assertTrue(isValidAnagr(s3))
+            }
+
+            it("confirms `$s4` is valid") {
+                assertTrue(isValidAnagr(s4))
+            }
+
+            it("confirms `$s5` is not valid") {
+                assertFalse(isValidAnagr(s5))
+            }
+        }
+
+        on("a list of strings") {
+            it("counts the number of valid ones to be 2") {
+                assertEquals(3, taskB(listOf(s1, s2, s3, s4, s5)))
+            }
+        }
+
+        on("the puzzler's input of ${puzzlerInput.size} lines") {
+            val result = taskB(puzzlerInput)
+
+            it("produces $result") {}
+
+            val expect = -1
+            it("should produce $expect") {
+                assertEquals(expect, result)
+            }
+        }
+    }
 })
