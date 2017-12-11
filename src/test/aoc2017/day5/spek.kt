@@ -31,4 +31,29 @@ class Test : Spek({
             }
         }
     }
+
+    given("2st task") {
+        it("escapes from `2, 3, 2, 3, -1` in 10 steps") {
+            assertEquals(10, taskB(listOf(2, 3, 2, 3, -1)))
+        }
+
+        it("escapes from `1, 1, 1, 1, 1` in 5 steps") {
+            assertEquals(5, taskB(listOf(1, 1, 1, 1, 1)))
+        }
+
+        it("escapes from `0, -1` in 4 steps") {
+            assertEquals(4, taskB(listOf(0, -1)))
+        }
+
+        on("the puzzler's input of ${puzzlerInput.size} instructions") {
+            val result = taskA(puzzlerInput)
+
+            it("produces $result") {}
+
+            val expect = -1
+            it("should produce $expect") {
+                assertEquals(expect, result)
+            }
+        }
+    }
 })
