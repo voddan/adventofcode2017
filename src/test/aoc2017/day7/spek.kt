@@ -1099,6 +1099,44 @@ class Test : Spek({
         /* </editor-fold> */)
 
     given("1st task") {
+        on("a single node line with children") {
+            val str = "fwft (72) -> ktlj, cntj, xhth"
+            val node = parseNode(str)
+
+            it("'s weight is 72") {
+                assertEquals(72, node.weight)
+            }
+
+            it("'s name is `fwft`") {
+                assertEquals("fwft", node.name)
+            }
+
+            it("has 3 children") {
+                assertEquals(3, node.childrenNames.size)
+            }
+
+            it("'s children name are ktlj, cntj, xhth") {
+                assertEquals(setOf("ktlj", "cntj", "xhth"), node.childrenNames.toSet())
+            }
+        }
+
+        on("a single node line without children") {
+            val str = "fwft (72)"
+            val node = parseNode(str)
+
+            it("'s weight is 72") {
+                assertEquals(72, node.weight)
+            }
+
+            it("'s name is `fwft`") {
+                assertEquals("fwft", node.name)
+            }
+
+            it("has no children") {
+                assertEquals(0, node.childrenNames.size)
+            }
+        }
+
         on("a small example") {
             val input = listOf("pbga (66)",
                                 "xhth (57)",
@@ -1132,7 +1170,7 @@ class Test : Spek({
 
             it("produces $result") {}
 
-            val expect = ""
+            val expect = "dgoocsw"
             it("should produce $expect") {
                 assertEquals(expect, result)
             }

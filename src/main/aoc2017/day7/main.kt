@@ -24,7 +24,9 @@ fun parseNode(str: String): Node {
     val name = groups[1]
     val weight = groups[2].toIntOrNull() ?: throw RuntimeException("${groups[2]} is not digitised :(")
 
-    val childrenNames = if(groups.size > 4) groups[4].split(", ") else listOf()
+    val childrenNames = if(groups[4].isNotBlank()) groups[4].split(", ") else listOf()
+
+    assert(childrenNames.all { it.isNotBlank() })
 
     return Node(name, weight, childrenNames)
 }
@@ -35,7 +37,7 @@ fun buildGraph(nodes: List<Node>): Node {
 
     parents.forEach { node ->
         node.children = node.childrenNames
-                .map { chName -> nodeMap.remove(chName) ?: throw RuntimeException("Unknown name $chName") }
+                .map { chName -> nodeMap.remove(chName) ?: throw RuntimeException("Unknown name $chName :(") }
                 .toSet()
 
         node.children.forEach {it.parent = node}
@@ -49,7 +51,9 @@ fun buildGraph(nodes: List<Node>): Node {
 }
 
 fun taskA(input: List<String>): String {
-    return ""
+    val nodes = input.map { parseNode(it) }
+    val root = buildGraph(nodes)
+    return root.name
 }
 
 fun main(args: Array<String>) {
