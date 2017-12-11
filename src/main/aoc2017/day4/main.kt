@@ -9,7 +9,7 @@ fun isValid(str: String): Boolean {
 fun taskA(input: List<String>) = input.count(::isValid)
 
 fun isValidAnagr(str: String): Boolean {
-    val words = str.split(' ')
+    val words = str.split(' ').map { it.toList().sorted() }
     return words.size == words.toSet().size
 }
 
