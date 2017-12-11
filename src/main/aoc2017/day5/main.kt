@@ -28,9 +28,9 @@ fun taskB(input: List<Int>): Int {
     while(pos in arr.indices) {
         count++
 
-        val next = arr[pos]
-        arr[pos] += 1
-        pos += next
+        val offset = arr[pos]
+        arr[pos] += if(offset < 3) 1 else -1
+        pos += offset
     }
 
     return count
