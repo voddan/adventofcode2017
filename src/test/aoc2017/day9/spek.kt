@@ -28,9 +28,9 @@ class Test : Spek({
             itAsserts("{<{},{},{{}}>}", listOf(Garbage(), Group(1)))
             itAsserts("{<a>,<a>,<a>,<a>}", listOf(Garbage(), Garbage(), Garbage(), Garbage(), Group(1)))
             itAsserts("{{<a>},{<a>},{<a>},{<a>}}",
-                    listOf(Garbage(), Group(2), Garbage(), Group(2),
+                    listOf( Garbage(), Group(2), Garbage(), Group(2),
                             Garbage(), Group(2), Garbage(), Group(2),
-                            Garbage(), Group(2), Group(1)))
+                            Group(1)))
             itAsserts("{{<!>},{<!>},{<!>},{<a>}}",
                     listOf(Exclamation(), Exclamation(), Exclamation(), Garbage(), Group(2), Group(1)))
         }
@@ -40,10 +40,10 @@ class Test : Spek({
             itAssertsScore("{{{}}}", 6)
             itAssertsScore("{{},{}}", 5)
             itAssertsScore("{{{},{},{{}}}}", 16)
-            itAssertsScore("{<{},{},{{}}>}", 1)
-            itAssertsScore("{<a>,<a>,<a>,<a>}", 9)
-            itAssertsScore("{{<a>},{<a>},{<a>},{<a>}}", 9)
-            itAssertsScore("{{<!>},{<!>},{<!>},{<a>}}", 3)
+            itAssertsScore("{<a>,<a>,<a>,<a>}", 1)
+            itAssertsScore("{{<ab>},{<ab>},{<ab>},{<ab>}}", 9)
+            itAssertsScore("{{<!!>},{<!!>},{<!!>},{<!!>}}", 9)
+            itAssertsScore("{{<a!>},{<a!>},{<a!>},{<ab>}}", 3)
         }
 
         on("the puzzler's input $puzzlerInput") {
@@ -51,7 +51,7 @@ class Test : Spek({
 
             it("produces $result") {}
 
-            val expect = -1
+            val expect = 9251
             it("should produce $expect") {
                 assertEquals(expect, result)
             }
