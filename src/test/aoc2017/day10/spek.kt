@@ -28,8 +28,8 @@ class TestA : Spek({
         on("tying [0, 1, 2, 3, 4] for 2nd time with length 4") {
             val tie = tie5.copy().tying(3).tying(4)
 
-            it("positions to 4") {
-                assertEquals(4, tie.position)
+            it("positions to 3") {
+                assertEquals(3, tie.position)
             }
             it("'s skip is 2") {
                 assertEquals(2, tie.skip)
@@ -42,8 +42,8 @@ class TestA : Spek({
         on("tying [0, 1, 2, 3, 4] for 3rd time with length 1") {
             val tie = tie5.copy().tying(3).tying(4).tying(1)
 
-            it("positions to 2") {
-                assertEquals(2, tie.position)
+            it("positions to 1") {
+                assertEquals(1, tie.position)
             }
             it("'s skip is 3") {
                 assertEquals(3, tie.skip)
@@ -67,19 +67,37 @@ class TestA : Spek({
             }
         }
 
+        on("tying [0.255] with lengths [2]") {
+            val tie = Tie((0..255).toMutableList(), 0, 0).tying(2)
+            it("returns [1, 0, 2 .. 255]") {
+                assertEquals(listOf(1, 0) + (2..255), tie.list)
+            }
+        }
 
         on("calculation the result of multiplying the first two numbers") {
             it("returns 12 on input of [3, 4, 1, 5] on a ring of 5") {
                 assertEquals(12, taskA(5, listOf(3, 4, 1, 5)))
             }
+
+            it("returns 2 on input of [3] on a ring of 5") {
+                assertEquals(2, taskA(5, listOf(3)))
+            }
+
+            it("returns 12 on input of [3, 4] on a ring of 5") {
+                assertEquals(12, taskA(5, listOf(3, 4)))
+            }
+
+            it("returns 0 on input of [2, 4] on a ring of 256") {
+                assertEquals(0, taskA(256, listOf(2, 4)))
+            }
         }
 
         on("the puzzler's input $puzzlerInput") {
-            val result = taskA(255, puzzlerInput)
+            val result = taskA(256, puzzlerInput)
 
             it("produces $result") {}
 
-            val expect = -1
+            val expect = 3770
             it("should produce $expect") {
                 assertEquals(expect, result)
             }
