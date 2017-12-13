@@ -31,5 +31,15 @@ fun taskA(ringSize: Int, lengths: List<Int>): Int {
 }
 
 fun taskB(input: String): String {
-    return ""
+    val tie = Tie((0..255).toMutableList(), 0, 0)
+
+    val lengths = input.map(Char::toInt) + listOf(17, 31, 73, 47, 23)
+
+    repeat(64) {
+        lengths.forEach { length -> tie.tying(length) }
+    }
+
+    val denseHash = tie.list.chunked(16).map { block -> block.reduce(Int::xor) }
+
+    return denseHash.joinToString(separator = "", transform = { "%02x".format(it) })
 }

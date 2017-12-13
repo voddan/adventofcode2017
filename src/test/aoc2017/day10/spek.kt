@@ -112,11 +112,11 @@ class TestB : Spek({
         }
 
         it("returns 33efeb34ea91902bb2f59c9920caa6cd for 'AoC 2017'") {
-            assertEquals("33efeb34ea91902bb2f59c9920caa6cd", taskB(""))
+            assertEquals("33efeb34ea91902bb2f59c9920caa6cd", taskB("AoC 2017"))
         }
 
         it("returns 3efbe78a8d82f29979031a4aa0b16a9d for '1,2,3'") {
-            assertEquals("3efbe78a8d82f29979031a4aa0b16a9d", taskB(""))
+            assertEquals("3efbe78a8d82f29979031a4aa0b16a9d", taskB("1,2,3"))
         }
 
         it("returns 63960835bcdc130f0b66d7ff4f6a5a8e for '1,2,4'") {
@@ -129,7 +129,7 @@ class TestB : Spek({
 
         it("produces $result") {}
 
-        val expect = ""
+        val expect = "a9d0e68649d0174c8756a59ba21d4dc6"
         it("should produce $expect") {
             assertEquals(expect, result)
         }
