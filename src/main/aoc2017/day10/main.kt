@@ -29,3 +29,7 @@ fun taskA(ringSize: Int, lengths: List<Int>): Int {
 
     return tie.list[0] * tie.list[1]
 }
+
+fun taskB(input: String): String {
+    return ""
+}

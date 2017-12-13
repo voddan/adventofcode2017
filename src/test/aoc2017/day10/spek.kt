@@ -4,7 +4,7 @@ import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.*
 import kotlin.test.assertEquals
 
-val puzzlerInput = listOf(199,0,255,136,174,254,227,16,51,85,1,2,22,17,7,192)
+val puzzlerInput = "199,0,255,136,174,254,227,16,51,85,1,2,22,17,7,192"
 
 class TestA : Spek({
 
@@ -93,7 +93,7 @@ class TestA : Spek({
         }
 
         on("the puzzler's input $puzzlerInput") {
-            val result = taskA(256, puzzlerInput)
+            val result = taskA(256, puzzlerInput.split(",").map(String::toInt))
 
             it("produces $result") {}
 
@@ -101,6 +101,37 @@ class TestA : Spek({
             it("should produce $expect") {
                 assertEquals(expect, result)
             }
+        }
+    }
+})
+
+class TestB : Spek({
+    on("calculating the Knot Hash") {
+        it("returns a2582a3a0e66e6e86e3812dcb672a272 for an empty string") {
+            assertEquals("a2582a3a0e66e6e86e3812dcb672a272", taskB(""))
+        }
+
+        it("returns 33efeb34ea91902bb2f59c9920caa6cd for 'AoC 2017'") {
+            assertEquals("33efeb34ea91902bb2f59c9920caa6cd", taskB(""))
+        }
+
+        it("returns 3efbe78a8d82f29979031a4aa0b16a9d for '1,2,3'") {
+            assertEquals("3efbe78a8d82f29979031a4aa0b16a9d", taskB(""))
+        }
+
+        it("returns 63960835bcdc130f0b66d7ff4f6a5a8e for '1,2,4'") {
+            assertEquals("63960835bcdc130f0b66d7ff4f6a5a8e", taskB("1,2,4"))
+        }
+    }
+
+    on("the puzzler's input $puzzlerInput") {
+        val result = taskB(puzzlerInput)
+
+        it("produces $result") {}
+
+        val expect = ""
+        it("should produce $expect") {
+            assertEquals(expect, result)
         }
     }
 })
