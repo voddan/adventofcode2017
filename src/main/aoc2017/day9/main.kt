@@ -61,3 +61,5 @@ fun parse(str: String): List<Region> {
 }
 
 fun taskA(input: String) = parse(input).sumBy { it.score }
+
+fun taskB(input: String) = parse(input).sumBy { it.score }

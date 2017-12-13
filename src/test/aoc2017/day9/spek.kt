@@ -36,14 +36,14 @@ class Test : Spek({
         }
 
         on("calculation the score") {
-            itAssertsScore("{}", 1)
-            itAssertsScore("{{{}}}", 6)
-            itAssertsScore("{{},{}}", 5)
-            itAssertsScore("{{{},{},{{}}}}", 16)
-            itAssertsScore("{<a>,<a>,<a>,<a>}", 1)
-            itAssertsScore("{{<ab>},{<ab>},{<ab>},{<ab>}}", 9)
-            itAssertsScore("{{<!!>},{<!!>},{<!!>},{<!!>}}", 9)
-            itAssertsScore("{{<a!>},{<a!>},{<a!>},{<ab>}}", 3)
+            itAssertsScore(::taskA, "{}", 1)
+            itAssertsScore(::taskA, "{{{}}}", 6)
+            itAssertsScore(::taskA, "{{},{}}", 5)
+            itAssertsScore(::taskA, "{{{},{},{{}}}}", 16)
+            itAssertsScore(::taskA, "{<a>,<a>,<a>,<a>}", 1)
+            itAssertsScore(::taskA, "{{<ab>},{<ab>},{<ab>},{<ab>}}", 9)
+            itAssertsScore(::taskA, "{{<!!>},{<!!>},{<!!>},{<!!>}}", 9)
+            itAssertsScore(::taskA, "{{<a!>},{<a!>},{<a!>},{<ab>}}", 3)
         }
 
         on("the puzzler's input $puzzlerInput") {
@@ -52,6 +52,29 @@ class Test : Spek({
             it("produces $result") {}
 
             val expect = 9251
+            it("should produce $expect") {
+                assertEquals(expect, result)
+            }
+        }
+    }
+
+    given("2st task") {
+        on("calculating the garbage") {
+            itAssertsScore(::taskB, "<>", 0)
+            itAssertsScore(::taskB, "<random characters>", 17)
+            itAssertsScore(::taskB, "<<<<>", 3)
+            itAssertsScore(::taskB, "<{!>}>", 2)
+            itAssertsScore(::taskB, "<!!>", 0)
+            itAssertsScore(::taskB, "<!!!>>", 0)
+            itAssertsScore(::taskB, """<{o"i!a,<{i<a>""", 10)
+        }
+
+        on("the puzzler's input $puzzlerInput") {
+            val result = taskB(puzzlerInput)
+
+            it("produces $result") {}
+
+            val expect = -1
             it("should produce $expect") {
                 assertEquals(expect, result)
             }
@@ -66,8 +89,8 @@ fun TestContainer.itAsserts(input: String, expect: List<Region>) {
     }
 }
 
-fun TestContainer.itAssertsScore(input: String, expect: Int) {
+fun TestContainer.itAssertsScore(func: (String) -> Int, input: String, expect: Int) {
     it("calculates $expect to be the score of `$input`") {
-        assertEquals(expect, parse(input).sumBy { it.score })
+        assertEquals(expect, func(input))
     }
 }
