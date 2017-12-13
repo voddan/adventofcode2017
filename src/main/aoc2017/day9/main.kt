@@ -62,4 +62,35 @@ fun parse(str: String): List<Region> {
 
 fun taskA(input: String) = parse(input).sumBy { it.score }
 
-fun taskB(input: String) = parse(input).sumBy { it.score }
+fun taskB(input: String): Int {
+    val stack = mutableListOf<Region>(Root)
+    var countGarbage = 0
+
+    for(ch in input) {
+        val head = stack.last()
+
+        if(head.canClose.invoke(ch)) {
+            val v = stack.removeAt(stack.lastIndex)
+            continue
+        }
+
+        when(head) {
+            is Root -> when(ch) {
+                '{' -> stack.add(Group(head.score + 1))
+                '<' -> stack.add(Garbage())
+                '!' -> stack.add(Exclamation())
+            }
+            is Group -> when(ch) {
+                '{' -> stack.add(Group(head.score + 1))
+                '<' -> stack.add(Garbage())
+                '!' -> stack.add(Exclamation())
+            }
+            is Garbage -> when(ch) {
+                '!' -> stack.add(Exclamation())
+                else -> countGarbage += 1
+            }
+        }
+    }
+
+    return countGarbage
+}
